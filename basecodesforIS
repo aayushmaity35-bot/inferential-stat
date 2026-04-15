@@ -1,0 +1,120 @@
+# PRACTICAL 1: Large Sample Test (Z-test)
+# Type 1: Mean test
+x <- rnorm(200, mean=0.55, sd=0.1)
+(mean(x)-0.55)/(sd(x)/sqrt(length(x)))
+# Type 2: Proportion test
+prop.test(90, 150, p=0.6)
+
+# Type 3: Two-sample mean
+x <- rnorm(200)
+y <- rnorm(200)
+t.test(x,y)
+________________________________
+
+# PRACTICAL 2: Chi-square Test
+# Type 1: Goodness of Fit
+x <- c(50,30,20)
+chisq.test(x)
+
+# Type 2: Independence
+data <- matrix(c(30,20,25,25), nrow=2)
+chisq.test(data)
+
+# Type 3: Homogeneity
+data <- matrix(c(20,30,25,25,30,20), nrow=3)
+chisq.test(data)
+
+________________________________
+
+# PRACTICAL 3: Student’s t-test
+# Type 1: One-sample
+x <- c(78,85,90,76,88)
+t.test(x, mu=80)
+
+# Type 2: Two-sample (independent)
+x <- c(78,85,90)
+y <- c(82,88,84)
+t.test(x,y)
+
+# Type 3: Paired test
+before <- c(65,72,68)
+after <- c(70,75,74)
+t.test(before, after, paired=TRUE)
+________________________________
+
+# PRACTICAL 4: One-way ANOVA
+score <- c(78,74,82,80,76,85,88,84,90,86,90,92,88,94,89)
+method <- factor(rep(c("A","B","C"), each=5))
+summary(aov(score ~ method))
+
+# PRACTICAL 5: Two-way ANOVA
+yield <- c(20,25,30,22,27,32,21,26,31)
+fert <- factor(rep(c("A","B","C"), each=3))
+soil <- factor(rep(c("S1","S2","S3"),3))
+summary(aov(yield ~ fert + soil))
+
+# PRACTICAL 6: Mann–Whitney U Test
+a <- c(78,85,90,76,88)
+b <- c(82,88,84,79,91)
+wilcox.test(a,b)
+
+# PRACTICAL 7: Wilcoxon Signed Rank Test
+before <- c(65,72,68,70,66)
+after <- c(70,75,74,73,69)
+wilcox.test(before, after, paired=TRUE)
+
+# PRACTICAL 8: Kruskal–Wallis ANOVA
+score <- c(75,82,78,85,88,90,70,72,68)
+method <- factor(rep(c("A","B","C"), each=3))
+kruskal.test(score ~ method)
+# PRACTICAL 9: Friedman ANOVA
+data <- matrix(c(75,80,78,82,85,84,78,79,77,90,92,88), nrow=4, byrow=TRUE)
+friedman.test(data)
+
+# PRACTICAL 10: Fisher Exact Test
+data <- matrix(c(8,2,4,6), nrow=2)
+fisher.test(data)
+
+before <- c(65,72,68)
+after <- c(70,75,74)
+t.test(before, after, paired=TRUE)
+data <- read_excel(“file.xlsx")
+# PRACTICAL 1 xlsx: Large Sample Test(Z-test)                  
+# Type 1: Mean test
+x <- data$Marks
+(mean(x)-50)/(sd(x)/sqrt(length(x)))
+# Type 2: Proportion test
+prop.test( sum(data$Status=="Yes"), nrow(data), p=0.6 )
+
+# Type 3: Two-sample mean
+x <- rnorm(100, mean=50, sd=10)
+y <- rnorm(120, mean=55, sd=12)
+
+z <- (mean(x) - mean(y)) / sqrt((sd(x)^2/length(x)) + (sd(y)^2/length(y)))
+
+z
+________________________________
+
+# PRACTICAL 2 xlsx: Chi-square Test
+# Type 1: Goodness of Fit
+freq <- table(data$Category)
+chisq.test(freq)
+
+# Type 2: Independence
+table_data <- table(data$Gender, data$Income)
+chisq.test(table_data)
+
+# Type 3: Homogeneity
+table_data <- table(data$Gender, data$Income)
+chisq.test(table_data)
+________________________________
+
+# PRACTICAL 3 xlsx: Student’s t-test
+# Type 1: One-sample
+t.test(data$Marks, mu=50)
+
+# Type 2: Two-sample (independent)
+t.test(Marks ~ Group, data=data)
+
+# Type 3: Paired test
+t.test(data$Before, data$After, paired=TRUE)
