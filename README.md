@@ -1,0 +1,2 @@
+# inferential-stat
+All practicals 
