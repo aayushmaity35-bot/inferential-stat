@@ -67,6 +67,7 @@ wilcox.test(before, after, paired=TRUE)
 score <- c(75,82,78,85,88,90,70,72,68)
 method <- factor(rep(c("A","B","C"), each=3))
 kruskal.test(score ~ method)
+
 # PRACTICAL 9: Friedman ANOVA
 data <- matrix(c(75,80,78,82,85,84,78,79,77,90,92,88), nrow=4, byrow=TRUE)
 friedman.test(data)
@@ -78,11 +79,16 @@ fisher.test(data)
 before <- c(65,72,68)
 after <- c(70,75,74)
 t.test(before, after, paired=TRUE)
+
+________________________________ 
+
 data <- read_excel(“file.xlsx")
+
 # PRACTICAL 1 xlsx: Large Sample Test(Z-test)                  
 # Type 1: Mean test
 x <- data$Marks
 (mean(x)-50)/(sd(x)/sqrt(length(x)))
+
 # Type 2: Proportion test
 prop.test( sum(data$Status=="Yes"), nrow(data), p=0.6 )
 
